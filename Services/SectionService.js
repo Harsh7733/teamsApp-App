@@ -32,7 +32,6 @@ export const saveSection = async (sectionData) => {
     }
 };
 
-
 // Delete a section
 export const deleteSection = async (sectionId) => {
     try {

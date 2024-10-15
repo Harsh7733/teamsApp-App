@@ -103,7 +103,7 @@ export const stylesforTaskList = StyleSheet.create({
     },
 });
 
-export const stylesforTaskModal = StyleSheet.create({
+export const stylesforAddTaskModal = StyleSheet.create({
     overlay: {
         flex: 1,
         justifyContent: 'center',

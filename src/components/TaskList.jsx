@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Collapsible from 'react-native-collapsible';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { stylesforTaskList } from './../../styles/styles'; 
+import { stylesforTaskList } from '../../styles/styles';
 
 const TaskList = ({ tasks }) => {
     const [collapsedSections, setCollapsedSections] = useState({});
@@ -37,19 +37,31 @@ const TaskList = ({ tasks }) => {
                     </View>
                     <Collapsible collapsed={!collapsedSections[sectionName]}>
                         <View>
-                            {groupedTasks[sectionName].map((task, index) => (
-                                <View key={index} style={stylesforTaskList.taskContainer}>
-                                    <Text style={stylesforTaskList.task}>Task: {task.taskName}</Text>
-                                    <Text>Due: {task.dueDate}</Text>
-                                    <Text>Assigned To: {task.assignedTo}</Text>
-                                    <Text>Status: {task.status}</Text>
-                                    <Text>Tags: {task.tags.join(', ')}</Text>
-                                </View>
-                            ))}
+                            {groupedTasks[sectionName].length > 0 ? (
+                                groupedTasks[sectionName].map((task) => (
+                                    <View key={task.id} style={stylesforTaskList.taskContainer}>
+                                        <Text style={stylesforTaskList.task}>Task: {task.taskName}</Text>
+                                        <Text>Due: {task.dueDate}</Text>
+                                        <Text>Assigned To: {task.assignedTo}</Text>
+                                        <Text>Status: {task.status}</Text>
+                                        <Text>Tags: {task.tags.join(', ')}</Text>
+                                    </View>
+                                ))
+                            ) : (
+                                <Text style={stylesforTaskList.noTasks}>No tasks available.</Text>
+                            )}
                         </View>
                     </Collapsible>
                 </View>
             ))}
+
+            <TouchableOpacity>
+                <Icon
+                    size={20}
+                    color="#ffffff"
+                />
+            </TouchableOpacity>
+
         </View>
     );
 };
