@@ -24,7 +24,6 @@ const App = () => {
   };
 
   const handleHomeClick = () => {
-    console.log("Home button clicked");
     setShowAddTaskButton(false);
     setActiveScreen('home'); // Show home
   };
