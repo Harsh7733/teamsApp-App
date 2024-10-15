@@ -35,7 +35,7 @@
     "@react-native/babel-preset": "0.75.4",
     "@react-native/eslint-config": "0.75.4",
     "@react-native/metro-config": "0.75.4",
-    "@react-native/typescript-config": "0.75.4",
+    "@react-native/typescript-config": "^0.75.4",
     "@types/react": "^18.2.6",
     "@types/react-test-renderer": "^18.0.0",
     "babel-jest": "^29.6.3",
@@ -44,7 +44,7 @@
     "metro-react-native-babel-preset": "^0.77.0",
     "prettier": "2.8.8",
     "react-test-renderer": "18.3.1",
-    "typescript": "5.0.4"
+    "typescript": "^5.6.3"
   },
   "engines": {
     "node": ">=18"
