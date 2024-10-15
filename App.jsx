@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, Text } from 'react-native';
 import TaskModal from './src/components/TaskModal';
 import TaskList from './src/components/TaskList';
 import Header from './src/components/Header';
 import Footer from './src/components/Footer';
 import Home from './src/components/HomeComponent';
+import { stylesforApp } from '../teamsApp/styles/styles'; 
 
 const App = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -28,18 +29,17 @@ const App = () => {
     setActiveScreen('home'); // Show home
   };
 
-
   return (
-    <View style={styles.container}>
+    <View style={stylesforApp.container}>
       <Header />
-      <View style={styles.content}>
+      <View style={stylesforApp.content}>
         {activeScreen === 'home' ? (
-          <Home /> // Removed key prop
+          <Home />
         ) : (
           <>
             {showAddTaskButton && (
-              <TouchableOpacity style={styles.addButton} onPress={() => setModalVisible(true)}>
-                <Text style={styles.addButtonText}>Add Task</Text>
+              <TouchableOpacity style={stylesforApp.addButton} onPress={() => setModalVisible(true)}>
+                <Text style={stylesforApp.addButtonText}>Add Task</Text>
               </TouchableOpacity>
             )}
             <TaskList tasks={tasks} />
@@ -54,29 +54,5 @@ const App = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  content: {
-    paddingTop: 70,
-    paddingHorizontal: 20,
-    alignItems: 'left',
-    width: '100%',
-  },
-  addButton: {
-    backgroundColor: '#007BFF',
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    borderRadius: 5,
-    marginBottom: 20,
-  },
-  addButtonText: {
-    fontFamily: 'Poppins-Bold',
-    color: '#fff',
-    fontSize: 16,
-  },
-});
 
 export default App;

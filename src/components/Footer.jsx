@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { stylesforFooter } from './../../styles/styles';
 
 const Footer = ({ onMyTasksClick, onHomeClick }) => {
     return (
-        <View style={styles.footer}>
+        <View style={stylesforFooter.footer}>
             <TouchableOpacity onPress={onHomeClick}>
                 <FooterButton icon="home-outline" label="Home" />
             </TouchableOpacity>
@@ -18,28 +19,10 @@ const Footer = ({ onMyTasksClick, onHomeClick }) => {
 };
 
 const FooterButton = ({ icon, label }) => (
-    <View style={styles.footerButton}>
+    <View style={stylesforFooter.footerButton}>
         <Ionicons name={icon} size={24} />
         <Text>{label}</Text>
     </View>
 );
-
-const styles = StyleSheet.create({
-    footer: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        paddingVertical: 10,
-        borderTopWidth: 1,
-        borderTopColor: '#3d3d3d',
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        bottom: 0,
-    },
-    footerButton: {
-        alignItems: 'center',
-    },
-});
 
 export default Footer;

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, Modal, Button, TextInput, StyleSheet, Text, ScrollView } from 'react-native';
+import { View, Modal, Button, TextInput, ScrollView, Text } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Picker } from '@react-native-picker/picker';
+import { stylesforTaskModal } from './../../styles/styles';
 
 const TaskModal = ({ visible, onClose, onSave }) => {
     const [sectionName, setSectionName] = useState('');
@@ -54,43 +55,43 @@ const TaskModal = ({ visible, onClose, onSave }) => {
 
     return (
         <Modal visible={visible} animationType="slide" transparent>
-            <View style={styles.overlay}>
-                <View style={styles.modalContainer}>
-                    <ScrollView contentContainerStyle={styles.scrollContainer}>
-                        <Text style={styles.header}>Section Name:</Text>
+            <View style={stylesforTaskModal.overlay}>
+                <View style={stylesforTaskModal.modalContainer}>
+                    <ScrollView contentContainerStyle={stylesforTaskModal.scrollContainer}>
+                        <Text style={stylesforTaskModal.header}>Section Name:</Text>
                         <TextInput
                             placeholder="Section Name"
                             placeholderTextColor="gray"
                             value={sectionName}
                             onChangeText={setSectionName}
-                            style={styles.input}
+                            style={stylesforTaskModal.input}
                         />
 
-                        <Text style={styles.header}>Task Name:</Text>
+                        <Text style={stylesforTaskModal.header}>Task Name:</Text>
                         <TextInput
                             placeholder="Task Name"
                             placeholderTextColor="gray"
                             value={taskName}
                             onChangeText={setTaskName}
-                            style={styles.input}
+                            style={stylesforTaskModal.input}
                         />
 
-                        <Text style={styles.header}>Tags:</Text>
+                        <Text style={stylesforTaskModal.header}>Tags:</Text>
                         <TextInput
                             placeholder="Tags (comma separated)"
                             placeholderTextColor="gray"
                             value={tags}
                             onChangeText={setTags}
-                            style={styles.input}
+                            style={stylesforTaskModal.input}
                         />
 
-                        <Text style={styles.header}>Due Date:</Text>
+                        <Text style={stylesforTaskModal.header}>Due Date:</Text>
                         <TextInput
                             placeholder="Due Date (DD-MM-YYYY)"
                             placeholderTextColor="gray"
                             value={formatDate(dueDate)}
                             onFocus={() => setShowDatePicker(true)}
-                            style={styles.input}
+                            style={stylesforTaskModal.input}
                         />
 
                         {showDatePicker && (
@@ -102,19 +103,19 @@ const TaskModal = ({ visible, onClose, onSave }) => {
                             />
                         )}
 
-                        <Text style={styles.header}>Task Assigned To:</Text>
+                        <Text style={stylesforTaskModal.header}>Task Assigned To:</Text>
                         <TextInput
                             placeholder="Assigned To"
                             placeholderTextColor="gray"
                             value={assignedTo}
                             onChangeText={setAssignedTo}
-                            style={styles.input}
+                            style={stylesforTaskModal.input}
                         />
 
-                        <Text style={styles.header}>Status:</Text>
+                        <Text style={stylesforTaskModal.header}>Status:</Text>
                         <Picker
                             selectedValue={status}
-                            style={styles.picker}
+                            style={stylesforTaskModal.picker}
                             onValueChange={(itemValue) => setStatus(itemValue)}
                         >
                             <Picker.Item label="Completed" value="completed" />
@@ -122,11 +123,11 @@ const TaskModal = ({ visible, onClose, onSave }) => {
                             <Picker.Item label="On Hold" value="on hold" />
                         </Picker>
 
-                        <View style={styles.buttonContainer}>
-                            <View style={styles.button}>
+                        <View style={stylesforTaskModal.buttonContainer}>
+                            <View style={stylesforTaskModal.button}>
                                 <Button title="Save" onPress={handleSave} />
                             </View>
-                            <View style={styles.button}>
+                            <View style={stylesforTaskModal.button}>
                                 <Button title="Close" onPress={onClose} />
                             </View>
                         </View>
@@ -136,58 +137,5 @@ const TaskModal = ({ visible, onClose, onSave }) => {
         </Modal>
     );
 };
-
-const styles = StyleSheet.create({
-    overlay: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    },
-    modalContainer: {
-        width: '90%',
-        borderRadius: 20,
-        backgroundColor: 'white',
-        padding: 20,
-        shadowOpacity: 0.2,
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        shadowRadius: 20,
-    },
-    scrollContainer: {
-        paddingBottom: 20,
-    },
-    input: {
-        borderWidth: 1,
-        color: 'black',
-        padding: 10,
-        marginVertical: 10,
-        borderColor: 'gray',
-        borderRadius: 5,
-    },
-    header: {
-        color: 'black',
-        fontWeight: 'bold',
-    },
-    picker: {
-        height: 50,
-        width: '100%',
-        marginVertical: 10,
-        color: 'black',
-        borderWidth: 1,
-        borderRadius: 5,
-        borderColor: 'black',
-    },
-    buttonContainer: {
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        marginTop: 20,
-    },
-    button: {
-        marginHorizontal: 5,
-    },
-});
 
 export default TaskModal;

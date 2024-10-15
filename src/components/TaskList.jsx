@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import Collapsible from 'react-native-collapsible';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import { stylesforTaskList } from './../../styles/styles'; 
 
 const TaskList = ({ tasks }) => {
     const [collapsedSections, setCollapsedSections] = useState({});
@@ -24,8 +25,8 @@ const TaskList = ({ tasks }) => {
         <View>
             {Object.keys(groupedTasks).map((sectionName) => (
                 <View key={sectionName}>
-                    <View style={styles.header}>
-                        <Text style={styles.headerText}>{sectionName}</Text>
+                    <View style={stylesforTaskList.header}>
+                        <Text style={stylesforTaskList.headerText}>{sectionName}</Text>
                         <TouchableOpacity onPress={() => toggleSection(sectionName)}>
                             <Icon
                                 name={collapsedSections[sectionName] ? 'chevron-down' : 'chevron-up'}
@@ -37,8 +38,8 @@ const TaskList = ({ tasks }) => {
                     <Collapsible collapsed={!collapsedSections[sectionName]}>
                         <View>
                             {groupedTasks[sectionName].map((task, index) => (
-                                <View key={index} style={styles.taskContainer}>
-                                    <Text style={styles.task}>Task: {task.taskName}</Text>
+                                <View key={index} style={stylesforTaskList.taskContainer}>
+                                    <Text style={stylesforTaskList.task}>Task: {task.taskName}</Text>
                                     <Text>Due: {task.dueDate}</Text>
                                     <Text>Assigned To: {task.assignedTo}</Text>
                                     <Text>Status: {task.status}</Text>
@@ -52,28 +53,5 @@ const TaskList = ({ tasks }) => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    header: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: 10,
-        borderBottomWidth: 1,
-        borderBottomColor: '#ddd',
-    },
-    headerText: {
-        fontSize: 18,
-        fontWeight: 'bold',
-    },
-    taskContainer: {
-        padding: 10,
-        borderBottomWidth: 1,
-        borderBottomColor: '#ddd',
-    },
-    task: {
-        fontSize: 16,
-    },
-});
 
 export default TaskList;
